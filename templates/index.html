@@ -1,6 +1,11 @@
 {% extends 'base.html' %} {% block head %} {% endblock %} {% block body %}
 <div class="content">
   <h1 style="text-align: center">Task Master</h1>
+  {% if tasks|length < 1 %}
+
+  <h4 style="text-align: center">No tasks, create one below!</h4>
+
+  {% else %}
   <table>
     <tr>
       <th>Task</th>
