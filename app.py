@@ -54,8 +54,7 @@ def update(id):
         
         try: 
             db.session.commit()
-            return render_template('/')
-        
+            return redirect('/')   
         except:
             return 'There was a problem updating that task'
     
