@@ -50,15 +50,17 @@ def update(id):
     task = Todo.query.get_or_404(id)
 
     if request.method == 'POST':
-        task_content = request.form['content']
-        new_task = Todo(content=task_content)
+        task.content = request.form['content']
+        
+        try: 
+            db.session.commit()
+            return render_template('/')
+        
+        except:
+            return 'There was a problem updating that task'
     
-    try: 
-         db.session.update(id)
-         db.session.commit()
-         return render_template('update.html')
-    except:
-        return 'There was a problem deleting that task'
+    else: 
+        return render_template('update.html', task=task)
 
 
 if __name__ == "__main__":
